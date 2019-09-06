@@ -15,24 +15,20 @@ function valorMax(i,j){
   let max = repeticoes(i)
   for (let x = i + 1; x <= j; x++) { /* não calculando o primeiro, no caso o "i" e usando o x para encontrar o valor máximo de repetições*/
     let valorFinal = repeticoes(x)
-    if (x > max) {
-      max = x
+    if (valorFinal > max) { /* se o valorFinal for igual ao número max de repeticoes */
+      max = valorFinal
     }
   }
-  return max
+  return i+' '+j+' '+max /* irá retornar os valores "i" e "j" + valor máximo de repeticoes */ 
 }
 
 console.log(valorMax(1,10))
+console.log(valorMax(100,200))
+console.log(valorMax(201,210))
+console.log(valorMax(900,1000))
 
 /**
- * Notas:
- *
- * 1) O programa não está fazendo o que o exercício pedia. Veja o exemplo de entrada e o exemplo de saída
- * 2) O retorno da função `valorMax` não retorna o valor esperado. Por exemplo, para entrada `[1, 10]` o
- * retorno deveria ser `20`
- * 3) a função `repeticoes` está calculando o valor corretamente
- * 4) há certas restrições existentes no enunciado do exercício que não foram aplicados
- * 5) há variáveis não utilizadas no código, evite-as uma vez que elas consomem memória do navegador sem
- * serem usadas efetivamente
+ * ainda precisa ver que a entrada é uma lista de pares, enquanto aqui 
+ * você está mandando os pares um de cada vez manualmente ao invés
+ * de um loop
  */
-

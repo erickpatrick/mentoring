@@ -6,16 +6,6 @@
  * @returns Number
  */
 const calculateCycleSize = (input, cycleSize) => {
-  // restriction: it stops at 1, so numbers smaller than this are not allowed
-  if (input < 1) {
-    throw new Error('No number smaller than 1 is allowed')
-  }
-
-  // restriction: it can't be larger than 1_000_000
-  if (input > 1000000) {
-    throw new Error('No number larger than 1_000_000 is allowed')
-  }
-
   // if the number is 1 we return the passed cycleSize and increase in 1 as
   // this is also a cycle check
   if (input === 1) {
@@ -52,16 +42,20 @@ for (let i = 0; i < sizeOfInputs; i += 1) {
   // then, from the first value of input (j = inputs[i][0]) until the last and
   // including it (j <= inputs[i][1])
   for (let j = inputs[i][0]; j <= inputs[i][1]; j += 1) {
+    // restriction: it stops at 1, so numbers smaller than this are not allowed
+    if (j < 1) {
+      throw new Error('No number smaller than 1 is allowed')
+    }
+
+    // restriction: it can't be larger than 1_000_000
+    if (j > 1000000) {
+      throw new Error('No number larger than 1_000_000 is allowed')
+    }
+
     // calculate the cycle size for that number and insert into array
     // allCyclesSizes
     allCyclesSizes.push(calculateCycleSize(j, 0))
   }
 
-  // get the highest numbers from allCycleSizes (Math.max(...allCycleSizes)
-  // and insert into array inputs array for the corresponding pair
-  // (inputs[i])
-  inputs[i].push(Math.max(...allCyclesSizes))
+  console.log (`${inputs[i][0]} ${inputs[i][1]} ${Math.max(...allCyclesSizes)}`)
 }
-
-// show results
-console.log(inputs)
